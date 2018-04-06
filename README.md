@@ -8,8 +8,8 @@
         $ mkdir yourproject
         $ cd yourproject
         $ git clone https://bitbucket.org/JanMr/workshop-1 .
+        $ composer install -o
         $ php -S localhost:8000 -t public/ #for local php
-        $ 
 ### Vagrant:
    - edit your /etc/hosts or windows c:\Windows\System32\Drivers\etc\hosts with
             
