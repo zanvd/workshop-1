@@ -1,7 +1,5 @@
 <?php
-
 namespace Workshop\Container;
-
 
 use Psr\Container\ContainerExceptionInterface;
 use Psr\Container\ContainerInterface;
@@ -9,17 +7,30 @@ use Psr\Container\NotFoundExceptionInterface;
 
 class ServiceContainer implements ContainerInterface {
     /**
+     * @var array
+     */
+    private $container = [
+
+    ];
+
+    /**
      * Finds an entry of the container by its identifier and returns it.
      *
      * @param string $id Identifier of the entry to look for.
+     * @return mixed Entry.
      *
      * @throws NotFoundExceptionInterface  No entry was found for **this** identifier.
      * @throws ContainerExceptionInterface Error while retrieving the entry.
-     *
-     * @return mixed Entry.
+     * @throws \Exception
      */
     public function get($id) {
-        // TODO: Implement get() method.
+        if ($this->has($id)) {
+            $class = $this->container[$id];
+
+            $object = new $class();
+
+            return $object->createService($this, $id);
+        }
     }
 
     /**
@@ -30,10 +41,26 @@ class ServiceContainer implements ContainerInterface {
      * It does however mean that `get($id)` will not throw a `NotFoundExceptionInterface`.
      *
      * @param string $id Identifier of the entry to look for.
-     *
      * @return bool
+     * @throws \Exception
      */
     public function has($id) {
-        // TODO: Implement has() method.
+        if (!isset($this->container[$id])) {
+            throw new \Exception('Service not found!');
+        }
+
+        return true;
+    }
+
+    /**
+     * Set container.
+     *
+     * @param array $container
+     * @return $this Returns this for chained calling.
+     */
+    public function setContainer(array $container) {
+        $this->container = $container;
+
+        return $this;
     }
 }

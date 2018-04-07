@@ -7,3 +7,9 @@ chdir(dirname(__DIR__));
 
 
 require 'vendor/autoload.php';
+
+try {
+    \Workshop\Application\Application::init('config/config.php')->run();
+} catch (Exception $e) {
+    echo 'Exception: ' . $e->getMessage();
+}
