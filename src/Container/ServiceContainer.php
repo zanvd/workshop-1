@@ -7,11 +7,11 @@ use Psr\Container\NotFoundExceptionInterface;
 
 class ServiceContainer implements ContainerInterface {
     /**
+     * Containers are specified in config file.
+     *
      * @var array
      */
-    private $container = [
-
-    ];
+    private $container = [];
 
     /**
      * Finds an entry of the container by its identifier and returns it.

@@ -7,6 +7,8 @@ use Workshop\Container\ServiceContainerInterface;
 
 class ApplicationFactory implements ServiceContainerInterface {
     /**
+     * Creates new instance of Application class with Request container and ID of given container.
+     *
      * @param ServiceContainer $container
      * @param $id
      * @return Application
